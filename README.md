@@ -8,15 +8,14 @@
 由于最开始开发的时候用的mysql，因此有一些残留
 
 ## 特点
-可以导入：
 + 格式化的txt文件，通过输入header自动解析
 + 全部csv，excel文件，自动解析头，转英文存db
 + sql文件，按行细分的那种
-内置部分解析模板，支持通用空格分割txt的导入
-断点续传，使用redis进行缓存
-celery异步处理，让数据导入自动智能化
-无头文件会自动用col进行命名
-支持文件批量导入
++ 内置部分解析模板，支持通用空格分割txt的导入
++ 断点续传，使用redis进行缓存
++ celery异步处理，让数据导入自动智能化
++ 无头文件会自动用col进行命名
++ 支持文件批量导入
 
 # 支持
 xlrd 读取excel
@@ -64,9 +63,9 @@ docker-compose up -d reader celery
     + tc_id 没卵用
     + filename docker内对应的目录或文件名称(2000w)
     + table 你要存的collection名称
-    + inter 是否读目录下的目录(ga)
-    + pattern 对于txt文件所使用的正则表达式(jd)
-    + header 表头，如果传了则优先使用
+    + inter 是否读目录下的目录(ga) 可选
+    + pattern 对于txt文件所使用的正则表达式(jd) 可选
+    + header 表头，如果传了则优先使用 可选
     返回创建成功的任务id
     ```
 * GET /tasks
@@ -81,7 +80,7 @@ docker-compose up -d reader celery
 
     返回数组，内容是目录下的子文件和文件夹
 
-
+没有前端怎么办？postman啊
 ## 没了
 欢迎pr
 
