@@ -94,5 +94,5 @@ docker-compose up -d reader celery
     QQ群：（怎么发图啊）
 ## 没了
 BUE mY a CoFfEE
-BTC: 1PXr5iZ145ha7XTeJwDk5S1LVLLRW5seKe
+*BTC*: 1PXr5iZ145ha7XTeJwDk5S1LVLLRW5seKe
 
