@@ -92,4 +92,8 @@ docker-compose up -d reader celery
 本项目纯为技术交流，本人不存储也不提供任何违法数据，相关正则匹配规则均为网上流传的数据格式。
 
 ## 技术交流
-    
+    QQ群：（怎么发图啊）
+## 没了
+BUE mY a CoFfEE
+BTC: 1PXr5iZ145ha7XTeJwDk5S1LVLLRW5seKe
+
