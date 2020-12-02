@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  reader:
+    image: reader:latest
+    volumes:
+      - /volume1/sync/old_sg:/data/old_data:ro
+      - /volume1/sync/kz:/data/kz:ro
+      - ./:/usr/src/app
+      - ./alembic.ini.docker:/usr/src/app/alembic.ini
+      - ./config.ini.docker:/usr/src/app/config.ini
+    env_file:
+      - .env.docker
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - db
+    expose:
+      - 8000
+    logging:
+      driver: "json-file"
+    ports:
+      - 8000:8000
+
+  celery:
+    image: reader:latest
+    command: celery -A flaskr.tasks.celery_app worker -l Info
+    env_file:
+      - .env.docker
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - reader
+    networks:
+      - db
+    volumes:
+      - /volume1/sync/old_sg:/data/old_data:ro
+      - /volume1/sync/kz:/data/kz:ro
+      - ./:/usr/src/app
+      - ./alembic.ini.docker:/usr/src/app/alembic.ini
+      - ./config.ini.docker:/usr/src/app/config.ini
+    logging:
+      driver: "json-file"
+
+  flower:
+    build:
+      context: .
+      dockerfile: ./flower.Dockerfile
+    networks:
+      - db
+    env_file:
+      - .env.docker
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - celery
+    logging:
+      driver: "json-file"
+    ports:
+      - 5555:5555
+
+networks:
+  db:
+    external: true
